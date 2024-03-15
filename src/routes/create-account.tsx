@@ -1,5 +1,8 @@
 import { styled } from "styled-components";
 import { useState } from "react";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../firsbase"
+import { useNavigate } from "react-router-dom";
 
 
 const Wrapper = styled.div`
@@ -43,6 +46,7 @@ const Error = styled.span`
 `;
 
 export default function Create_Account() {
+    const navigate = useNavigate();
     const [isLoading, setLoading] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -60,10 +64,17 @@ export default function Create_Account() {
         }
     };
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (isLoading || name === "" || email === "" || password === "") return;
         try {
-        } catch (e) { // catching errors
+            setLoading(true);
+            const credentials = await createUserWithEmailAndPassword(
+                auth, email, password
+            ) //createUserWithEmailAndPassword function will return the credential value
+            await updateProfile(credentials.user, { displayName: name });
+            navigate("/"); //sent back to the homepage
+        } catch (e) { // createUserWithEmailAndPassword captures the error
 
         } finally {
         } setLoading(false);
