@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Input, Switcher, Title, Wrapper, Error, Form } from "../compoments/auth.components";
+import GithubButton from "./github-btn";
 
 
 export default function Create_Account() {
@@ -50,5 +51,6 @@ export default function Create_Account() {
         <Switcher>
             Don't have an account? <Link to="/create-account">Create one &rarr;</Link>
         </Switcher>
+        <GithubButton />
     </Wrapper>
 }
