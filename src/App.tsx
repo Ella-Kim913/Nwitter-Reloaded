@@ -10,11 +10,12 @@ import { useEffect, useState } from "react";
 import LoadingScreen from "./compoments/loading-screen";
 import { auth } from "./firsbase";
 import ProtectedRoute from "./compoments/protected-route";
+import PasswordReset from "./routes/password-reset";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ProtectedRoute><Layout /></ProtectedRoute>,
+    element: <ProtectedRoute><Layout /></ProtectedRoute>, //protect for the logined users
     children: [
       {
         path: "",
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/create-account",
     element: <Create_Account />
+  },
+  {
+    path: "/password-reset",
+    element: <PasswordReset />
   },
 ]);
 

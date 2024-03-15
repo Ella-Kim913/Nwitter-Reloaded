@@ -2,7 +2,7 @@ import { useState } from "react";
 import { auth } from "../firsbase"
 import { useNavigate, Link } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import { Input, Switcher, Title, Wrapper, Error, Form } from "../compoments/auth.components";
 import GithubButton from "./github-btn";
 
@@ -50,6 +50,9 @@ export default function Create_Account() {
         {error != "" ? <Error>{error}</Error> : null}
         <Switcher>
             Don't have an account? <Link to="/create-account">Create one &rarr;</Link>
+        </Switcher>
+        <Switcher>
+            Forgot password? <Link to="/password-reset">Reset password&rarr;</Link>
         </Switcher>
         <GithubButton />
     </Wrapper>

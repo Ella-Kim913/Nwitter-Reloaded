@@ -58,6 +58,9 @@ export default function Create_Account() {
         <Switcher>
             Already have an account? <Link to="/login">Log in &rarr;</Link>
         </Switcher>
+        <Switcher>
+            Forgot password? <Link to="/password-reset">Reset password&rarr;</Link>
+        </Switcher>
         <GithubButton />
     </Wrapper>
 }
