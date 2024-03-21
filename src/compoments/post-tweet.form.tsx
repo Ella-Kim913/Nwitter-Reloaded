@@ -1,7 +1,8 @@
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import styled from "styled-components";
-import { auth, db } from "../firsbase";
+import { auth, db, storage } from "../firsbase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const Form = styled.form`
   display: flex;
@@ -61,13 +62,15 @@ export default function PostTweetForm() {
     const [isLoading, setLoading] = useState(false);
     const [tweet, setTweet] = useState("");
     const [file, setFile] = useState<File | null>(null);
+    const maxFileSize = 1024 ** 2; // 1MB
+
     const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setTweet(e.target.value)
     }
 
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { files } = e.target;
-        if (files && files.length === 1) {
+        if (files && files.length === 1 && files[0].size <= 1000000) {
             setFile(files[0]);
         }
     }
@@ -75,16 +78,26 @@ export default function PostTweetForm() {
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const user = auth.currentUser;
-        if (!user || isLoading || tweet === "" || tweet.length > 180) return;
+        if (!user || isLoading || tweet === "" || tweet.length < maxFileSize) return;
 
         try {
             setLoading(true);
-            await addDoc(collection(db, "Tweet"), {
+            const document = await addDoc(collection(db, "Tweet"), { //add the new tweet into the db and get as a document ref at the same time
                 tweet,
                 createAt: Date.now(),
                 username: user.displayName || "Annoymous",
                 userId: user.uid,
-            })
+            });
+            if (file) {
+                const location = ref(storage, `Tweets/${user.uid}-${user.displayName}/${document.id}`) //save the picture into the db and get the location at the same time
+                const result = await uploadBytes(location, file) //get the reference of the result
+                const url = await getDownloadURL(result.ref); //use the reference to get the physical url
+                await updateDoc(document, {
+                    photo: url // update the docs with the photo url
+                })
+            }
+            setTweet("");
+            setFile(null);
         } catch (e) {
             console.log(e);
         } finally {
@@ -94,7 +107,7 @@ export default function PostTweetForm() {
     }
 
     return <Form onSubmit={onSubmit}>
-        <TextArea onChange={onChange} value={tweet} rows={5} maxLength={180} placeholder="What is happening?" />
+        <TextArea required onChange={onChange} value={tweet} rows={5} maxLength={180} placeholder="What is happening?" />
         <AttachFileButton htmlFor="file">{file ? "Photo added" : "Add Photo"}</AttachFileButton>
         <AttachFileInput onChange={onFileChange} type="file" id="file" accept="image/*" />
         <SubmitBtn type="submit" value={isLoading ? "Posting" : "Post Tweet"} />
