@@ -1,12 +1,13 @@
-import { auth } from "../firsbase";
+import styled from "styled-components";
+import PostTweetForm from "../compoments/post-tweet.form";
+
+const Wrapper = styled.div``;
 
 export default function Home() {
-    const logOut = () => {
-        auth.signOut();
-    }
+
     return (
-        <h1>
-            <button onClick={logOut}></button>
-        </h1>
+        <Wrapper>
+            <PostTweetForm></PostTweetForm>
+        </Wrapper>
     );
 }
