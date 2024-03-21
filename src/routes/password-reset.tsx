@@ -31,7 +31,6 @@ export default function PasswordReset() {
         } catch (e) {
             if (e instanceof FirebaseError) {
                 setError(e.message);
-                console.error(error);
             }
         } finally {
             setLoading(false);

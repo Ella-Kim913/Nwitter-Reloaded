@@ -7,7 +7,5 @@ export default function ProtectedRoute({ children, }: { children: React.ReactNod
     if (user === null) {
         return <Navigate to="/login" />
     }
-
-
     return children;
 }
