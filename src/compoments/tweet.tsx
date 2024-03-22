@@ -7,13 +7,13 @@ import EditTweetForm from "./edit-tweet-form";
 import { useState } from "react";
 
 interface WrapperProps {
-    hasPhoto: boolean;
+    hasphoto: boolean;
 }
 
 
 const Wrapper = styled.div<WrapperProps>`
   display: grid;
-  grid-template-columns: ${(props) => (props.hasPhoto ? "3fr 1fr" : "1fr")};
+  grid-template-columns: ${(props) => (props.hasphoto ? "3fr 1fr" : "1fr")};
   padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 15px;
@@ -107,7 +107,7 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
     }
 
 
-    return <Wrapper hasPhoto={!!photo}>
+    return <Wrapper hasphoto={!!photo}>
         <Column>
             <Username>{username}</Username>
             {isEditing ? (

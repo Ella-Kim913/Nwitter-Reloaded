@@ -1,8 +1,11 @@
 import styled from "styled-components";
-import { auth, storage } from "../firsbase"
-import { useState } from "react";
+import { auth, db, storage } from "../firsbase"
+import { useEffect, useState } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
+import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
+import { ITweet } from "../compoments/timeline";
+import Tweet from "../compoments/tweet";
 
 const Wrapper = styled.div`
   display: flex;
@@ -35,9 +38,18 @@ const Name = styled.span`
   font-size: 22px;
 `;
 
+const Tweets = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+
 export default function Profile() {
     const user = auth.currentUser;
     const [avatar, setAvatar] = useState(user?.photoURL);
+    const [tweets, setTweets] = useState<ITweet[]>([])
     const onAvatorChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const { files } = e.target;
         if (!user) return;
@@ -55,6 +67,26 @@ export default function Profile() {
         }
     }
 
+    const fetchTweets = async () => {
+        const tweetsQuery = query(
+            collection(db, "Tweet"),
+            where("userId", "==", user?.uid),
+            orderBy("createAt", "desc"),
+            limit(25),
+        )
+        const snapshot = await getDocs(tweetsQuery);
+        const tweets = snapshot.docs.map((doc) => {
+            const { tweet, createAt, userId, username, photo } = doc.data();
+            return {
+                tweet, createAt, userId, username, photo,
+                id: doc.id,
+            };
+        });
+        setTweets(tweets);
+
+    }
+    useEffect(() => { fetchTweets() }, []);
+
     return <Wrapper>
         <AvatarUpload htmlFor="avator">
             {avatar ? <AvatarImg src={avatar} /> : <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -65,6 +97,10 @@ export default function Profile() {
         <Name>
             {user?.displayName ? user.displayName : "Anonymous"}
         </Name>
-
+        <Tweets>
+            {tweets.map((tweet) => (
+                <Tweet key={tweet.id}{...tweet} />
+            ))}
+        </Tweets>
     </Wrapper>
 }
