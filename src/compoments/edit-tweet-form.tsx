@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import styled from "styled-components";
 import { auth, db, storage } from "../firsbase";
@@ -60,7 +60,16 @@ const SubmitBtn = styled.input`
     opacity: 0.9;
   }
 `;
-export default function EditTweetForm({ tweet, photo, id, setIsEditing }) {
+
+interface EditTweetFormProps {
+    tweet: string; // Assuming tweet is a string
+    photo: string; // Assuming photo is a string URL
+    id: string; // Assuming id is a string
+    setIsEditing: (isEditing: boolean) => void; // Assuming setIsEditing is a function that accepts a boolean
+}
+
+
+export default function EditTweetForm({ tweet, photo, id, setIsEditing }: EditTweetFormProps) {
     const [isLoading, setLoading] = useState(false);
     const [edittweet, seteditTweet] = useState(tweet);
     const [editFile, seteditFile] = useState<File | null>(null);

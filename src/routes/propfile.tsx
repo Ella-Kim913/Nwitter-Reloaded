@@ -138,7 +138,7 @@ export default function Profile() {
         setName(e.target.value)
     }
 
-    const onEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const onEdit = (_e: React.MouseEvent<HTMLButtonElement>) => {
         setIsEditing((prev) => !prev);
     }
 
