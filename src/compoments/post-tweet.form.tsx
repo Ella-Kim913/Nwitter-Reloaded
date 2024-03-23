@@ -70,7 +70,7 @@ export default function PostTweetForm() {
 
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { files } = e.target;
-        if (files && files.length === 1 && files[0].size <= 1000000) {
+        if (files && files.length === 1 && files[0].size <= maxFileSize) {
             setFile(files[0]);
         }
     }
@@ -78,7 +78,7 @@ export default function PostTweetForm() {
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const user = auth.currentUser;
-        if (!user || isLoading || tweet === "" || tweet.length > maxFileSize) return;
+        if (!user || isLoading || tweet === "" || tweet.length > 150) return;
 
         try {
             setLoading(true);

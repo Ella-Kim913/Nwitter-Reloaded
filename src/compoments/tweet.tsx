@@ -6,14 +6,10 @@ import { deleteObject, ref } from "firebase/storage";
 import EditTweetForm from "./edit-tweet-form";
 import { useState } from "react";
 
-interface WrapperProps {
-    hasphoto: boolean;
-}
 
-
-const Wrapper = styled.div<WrapperProps>`
+const Wrapper = styled.div<{ $hasPhoto: boolean }>`
   display: grid;
-  grid-template-columns: ${(props) => (props.hasphoto ? "3fr 1fr" : "1fr")};
+  grid-template-columns: ${(props) => (props.$hasPhoto ? "3fr 1fr" : "1fr")};
   padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 15px;
@@ -107,7 +103,7 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
     }
 
 
-    return <Wrapper hasphoto={!!photo}>
+    return <Wrapper $hasPhoto={!!photo}>
         <Column>
             <Username>{username}</Username>
             {isEditing ? (
