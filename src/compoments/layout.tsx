@@ -33,9 +33,9 @@ const MenuItem = styled.div`
     fill: white;
   }
   &.log-out {
-    border-color: tomato;
+    border-color: #0B3142;
     svg {
-      fill: tomato;
+      fill: #0B3142;
     }
   }
 `;

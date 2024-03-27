@@ -1,10 +1,9 @@
-import { collection, getDocs, limit, onSnapshot, orderBy, query } from "firebase/firestore";
-import { useEffect, useReducer, useState } from "react";
+import { collection, limit, onSnapshot, orderBy, query } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { db } from "../firsbase";
 import Tweet from "./tweet";
 import { Unsubscribe } from "firebase/auth";
-import { limitToFirst } from "firebase/database";
 
 export interface ITweet {
     id: string;

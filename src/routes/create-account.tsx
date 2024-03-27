@@ -47,7 +47,7 @@ export default function Create_Account() {
 
 
     return <Wrapper>
-        <Title>JOIN 𝕏</Title>
+        <Title>JOIN Nwitter</Title>
         <Form onSubmit={onSubmit}>
             <Input onChange={onChange} name="name" value={name} placeholder="Name" type="text" required />
             <Input onChange={onChange} name="email" value={email} placeholder="Email" type="email" required />

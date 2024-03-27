@@ -2,7 +2,7 @@ import { useState } from "react";
 import { auth } from "../firsbase"
 import { useNavigate, Link } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
-import { sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { Input, Switcher, Title, Wrapper, Error, Form } from "../compoments/auth.components";
 import GithubButton from "./github-btn";
 
@@ -41,7 +41,7 @@ export default function Create_Account() {
 
 
     return <Wrapper>
-        <Title>Log in 𝕏</Title>
+        <Title>LOG IN Nwitter</Title>
         <Form onSubmit={onSubmit}>
             <Input onChange={onChange} name="email" value={email} placeholder="Email" type="email" required />
             <Input onChange={onChange} name="password" value={password} placeholder="Password" type="password" required />

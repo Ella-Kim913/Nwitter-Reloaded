@@ -2,7 +2,7 @@ import { useState } from "react";
 import { auth } from "../firsbase"
 import { useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
-import { EmailAuthCredential, EmailAuthProvider, sendPasswordResetEmail } from "firebase/auth";
+import { sendPasswordResetEmail } from "firebase/auth";
 import { Input, Title, Wrapper, Error, Form } from "../compoments/auth.components";
 
 
@@ -39,7 +39,7 @@ export default function PasswordReset() {
 
 
     return <Wrapper>
-        <Title>Reset Password 𝕏</Title>
+        <Title>Reset Password Nwitter</Title>
         <Form onSubmit={onSubmit}>
             <Input onChange={onChange} name="email" value={email} placeholder="Email" type="email" required />
             <Input type="submit" value={isLoading ? "isLoading..." : "Send reset mail"} />

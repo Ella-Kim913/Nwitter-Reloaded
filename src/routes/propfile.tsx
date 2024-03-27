@@ -44,8 +44,8 @@ const NameInput = styled.textarea`
   padding: 10px;
   border-radius: 20px;
   font-size: 17px;
-  color: white;
-  background-color: black;
+  color: #0B3142;
+  background-color: white;
   width: 80%;
   
 
@@ -57,7 +57,7 @@ const NameInput = styled.textarea`
   }
   &:focus {
     outline: none;
-    border-color: #1d9bf0;
+    border-color: #0B3142;
   }
 `;
 
@@ -77,7 +77,7 @@ const Row = styled.div`
 
 const EditBtn = styled.button`
 background-color: white;
-color: tomato;
+color: #0B3142;
 font-weight: 600;
 border: 0;
 font-size: 12px;
@@ -89,7 +89,7 @@ cursor: pointer;
 
 const ConfirmBtn = styled.input`
 
-  background-color: tomato;
+  background-color: #0B3142;
   color: white;
   font-weight: 600;
   border: 0;

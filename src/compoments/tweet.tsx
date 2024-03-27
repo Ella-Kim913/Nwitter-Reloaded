@@ -45,7 +45,7 @@ const Payload = styled.p`
 `;
 
 const DeleteBtn = styled.button`
-  background-color: tomato;
+  background-color: #0F5257;
   color: white;
   font-weight: 600;
   border: 0;
@@ -59,7 +59,7 @@ const DeleteBtn = styled.button`
 const EditBtn = styled.button`
 margin-left:7px;
 background-color: white;
-color: tomato;
+color: #0F5257;
 font-weight: 600;
 border: 0;
 font-size: 12px;
