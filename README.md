@@ -1,30 +1,29 @@
-# React + TypeScript + Vite
+# Twitter Clone Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**URL:** [Nwitter Reloaded](https://nwitter-reloaded-d4b2e.firebaseapp.com/)
 
-Currently, two official plugins are available:
+## Overview
+This project is a Twitter Clone that enables users to share their thoughts in real-time. Developed with a focus on modern web technologies and real-time interactions, it integrates various Firebase services along with a React frontend to handle authentication, database management, and file storage efficiently.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Main Tech Stacks
+- React, TypeScript, Vite, HTML & CSS, Firebase(Authentication, Storage, Database), Google Cloud Storage
 
-## Expanding the ESLint configuration
+## Main Features
+- **Social Authentication:** Support for email, and GitHub login methods, allowing users to sign up and log in with ease.
+- **Tweet CRUD:** Create, Read, Update, and Delete functionalities for tweets, giving users full control over their content.
+- **Protected Pages:** Ensures that certain parts of the application are only accessible to authenticated users.
+- **Profile Page:** Users can view and edit their profile, showcasing their personal information and tweet history.
+- **File Upload:** Enables users to upload images to their tweets, enhancing the content sharing experience.
+- **Deploy:** Deployed application for global access.
+- **API Key Security:** Implemented measures to secure API keys and sensitive data.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Screenshots
+Here are some screenshots showcasing the application in action:
 
-- Configure the top-level `parserOptions` property like this:
+![Tweet Feed](https://github.com/Ella-Kim913/movieapp/assets/132117916/e64ae130-fd39-40d4-920d-6fda9cc4c200)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+![Log in](https://github.com/Ella-Kim913/movieapp/assets/132117916/f9ea2caf-32f3-4acc-8752-b4739a5fa1cc)
+
+---
+
